@@ -1,9 +1,9 @@
 # china-freight-AFV
-**Overview**
+# Overview
 This repository contains all codes of the paper - ??
-**Requirements and Installation**
-The whole analysis-related codes should run with a Python environment, regardless of operating systems theoretically. We successfully execute all the codes in both Windows (Win10, Win11) machines and a macOS (Sequoia 15.2) machine. More detailed info is as below:
-**Prerequisites**
+# Requirements and Installation
+The whole analysis-related codes should run with a **Python** environment, regardless of operating systems theoretically. We successfully execute all the codes in both Windows (Win10, Win11) machines and a macOS (Sequoia 15.2) machine. More detailed info is as below:
+# Prerequisites
 It is highly recommended to install and use the following versions of python/packages to run the codes:
 1. 01FreightTripODGeneration.py
    python=3.9
