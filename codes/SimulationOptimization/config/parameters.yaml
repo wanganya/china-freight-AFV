@@ -1,0 +1,106 @@
+################################################################################
+# Author: Shiqi (Anya) WANG
+# Date: 2025/7/11
+# Description: Parameter configuration file
+################################################################################
+
+# Path configuration
+path_config:
+  trajectory_path: 'D:/ChinaTrip/Output/Trajectory' 
+  road_network_path: 'D:/Road/OSMOutput/ChinaHighway.gpkg'  
+  traffic_volume_path: 'D:/Road/RoadProcess/Output/002VolumeDayUpdate'  
+  station_data_path: 'D:/ChinaStation/Output/ChinaStationHighway.shp'  
+  temperature_data_path: 'D:/ChinaTem/NOAA_NCEI/Output/ChinaTemperature4Season.txt'  
+  vehicle_data_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/TypicalVehicleBEVHFCV.txt'  
+  cs_data_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/ChargingStation.txt'  
+  bss_data_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/BatterySwapStation.txt'  
+  hrs_data_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/HydrogenRefuelingStation.txt'  
+  charging_post_data_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/ChargingPost.txt'  
+  electricity_price_summer_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/ElectricityPriceSummer.txt'  
+  electricity_price_unsummer_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/ElectricityPriceUnsummer.txt'  
+  hydrogen_price_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/HydrogenPriceCG.txt'  
+  parameters_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/Parameters.txt'  
+  free_speed_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/FreeSpeedByCategory.txt'  
+  vehicle_ghg_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/BEVHFCVGHG.txt'  
+  battery_ghg_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/BatteryGHG.txt'  
+  province_city_code_path: 'D:/ChinaEFVSimulation/ChinaEFVParameter/ProvinceCityCode.txt'  
+  distance_correction_file: 'D:/ChinaEFVSimulation/ChinaEFVParameter/CityDistanceCorrection.pkl'  
+
+  output_directory: 'D:/ChinaEFVSimulation/Output'
+
+# Data processing parameters
+data_processing:
+  chunk_size: 5000  # Size of data chunks read
+  memory_limit: 40  # Maximum memory usage (GB)
+  clean_nan_records: true
+  cache_processed_data: true
+  ultra_low_memory_mode: false  # Enable Ultra Low Memory Mode
+  sample_ratio: 0.2  # Only 20% of the data samples are processed for quick testing
+
+# Simulation parameters
+simulation:
+  seasons:
+    Winter:
+      start_date: '20190114'
+      end_date: '20190120'
+    Spring:
+      start_date: '20190418'
+      end_date: '20190424'
+    Summer:
+      start_date: '20190716'
+      end_date: '20190722'
+    Autumn:
+      start_date: '20191106'
+      end_date: '20191112'
+  
+  # BEV parameters
+  bev:
+    min_soc: 0.2  # Trigger charging minimum SOE threshold
+    max_charging_time: 999999999999  # Maximum charging time (minutes)
+  
+  # HFCV parameters
+  hfcv:
+    min_soc: 0.2  # Trigger refueling minimum SOE threshold
+    max_refueling_time: 999999999999  # Maximum refueling time (minutes)
+  
+  # Rest parameters
+  rest:
+    max_driving_hours: 4.0  # Maximum continuous driving time (hours)
+    min_rest_time: 20  # Minimum rest time (minutes)
+  
+  # Queue model parameters
+  queue:
+    max_queue_length: 999999999999  # Maximum queue length
+  
+  # Set to true to terminate the simulation early if an infeasible situation is encountered.
+  early_stop_infeasible: true  
+
+# Optimization parameters
+optimization:
+  objective_weights:
+    cost: 0.333
+    travel_time: 0.333
+    ghg: 0.334
+  
+  # Algorithm parameters
+  simulated_annealing:
+    algorithm: "parallel_simulated_annealing"  # parallel_simulated_annealing or simulated_annealing
+    initial_temperature: 500.0
+    cooling_rate: 0.98 却率
+    iterations_per_temp: 150 
+    min_temperature: 0.5 
+    max_iterations: 10000 
+    parallel: true 
+    random_seed: 42
+  
+  # Constraints
+  constraints:
+    min_stations: 1  # Minimum amount of infrastructure
+    max_stations: 999999999999  # Maximum amount of infrastructure
+
+# Log configuration
+logging:
+  level: 'INFO'  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  console_output: true  # Whether to output to the console
+  file_output: true  # Whether to output to the file
+  log_format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'  # Log format
