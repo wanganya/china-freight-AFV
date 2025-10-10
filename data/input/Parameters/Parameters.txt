@@ -1,0 +1,6 @@
+Parameter	Value	Unit
+SOCRangeAnxiety	0.2	
+SwapBatteryFullTime	24.0	hour
+HydrogenFuelTime	24.0	hour
+HytoElec	33.3	kWh/kg
+SpeedRange	0.5	

@@ -1,0 +1,3 @@
+Type	Cost	Unit1	Power	Unit2	Efficiency	Unit3	GHG	Unit4	LifeSpanCP	Unit5
+FCP	3500	Yuan/kW	120	kW	0.85		500	kg/year	10	year
+SCP	3500	Yuan/kW	7	kW	0.85		500	kg/year	10	year

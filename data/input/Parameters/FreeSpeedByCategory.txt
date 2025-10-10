@@ -1,0 +1,7 @@
+Category	FreeSpeed	Unit
+motorway	120	kilometer/hour
+motorway_link	120	kilometer/hour
+trunk	80	kilometer/hour
+trunk_link	80	kilometer/hour
+primary	70	kilometer/hour
+primary_link	70	kilometer/hour

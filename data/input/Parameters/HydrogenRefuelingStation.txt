@@ -1,0 +1,2 @@
+Type	Cost	Unit1	GHG	Unit2	Capacity	Unit3	Efficiency	Unit4	LifeSpanHRS	Unit5	ServiceSpeed	Unit6
+HRS_01	15000000	Yuan	135563536	kg/year	99999999	kg	1	100%	10	year	5	minute
