@@ -1,2 +1,3 @@
 Type	Cost	Unit1	GHG	Unit2	LifeSpanBSS	Unit3	ServiceSpeed	Unit4
-BSS_01	1500000	Yuan	451878000	kg/year	10	year	5	minute
+BSS_01	9500000	Yuan	451878000	kg/year	10	year	5	minute
+
