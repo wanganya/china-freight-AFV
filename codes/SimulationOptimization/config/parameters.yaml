@@ -86,7 +86,7 @@ optimization:
   simulated_annealing:
     algorithm: "parallel_simulated_annealing"  # parallel_simulated_annealing or simulated_annealing
     initial_temperature: 500.0
-    cooling_rate: 0.98 却率
+    cooling_rate: 0.98 
     iterations_per_temp: 150 
     min_temperature: 0.5 
     max_iterations: 10000 
@@ -103,4 +103,5 @@ logging:
   level: 'INFO'  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
   console_output: true  # Whether to output to the console
   file_output: true  # Whether to output to the file
+
   log_format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'  # Log format
