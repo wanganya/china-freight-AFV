@@ -1,2 +1,3 @@
 Type	Cost	Unit1	GHG	Unit2	LifeSpanCS	Unit3
-CS_01	6000000	Yuan	989614000	kg/year	10	year
+CS_01	6000000	Yuan	98961.4000	kg/year	10	year
+
