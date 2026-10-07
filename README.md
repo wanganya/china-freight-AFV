@@ -65,17 +65,24 @@ It is highly recommended to download AnaConda to create/manage Python environmen
 
 # Usage
 1. Git clone/download the repository to your local disk.
-2. Unzip the full datasets (which can be provided upon request, see Overview[])
+2. Unzip the full datasets (which can be provided upon request, see [Overview](https://github.com/wanganya/china-freight-AFV/blob/main/README.md).
+   
    > The structure of the provided full datasets should look like as below:
-   > 
+   >
    > ```
-   > - ??
-   > - ??
-   > - ??
-   > - ??
-   > - ??
+   > data/
+   > ├── raw/
+   > │   ├── freight_trip/
+   > │   ├── vehicle/
+   > │   ├── road_network/
+   > │   ├── energy/
+   > │   └── infrastructure/
+   > │
+   > ├── interim/
+   > │
+   > └── output/
    > ```
-3. Unzip each compressed dataset (``.??`` file) and drag folders/files into corresponding dir of this repo. For example, extract all files from the ``?A?.7z`` to the dir ``./data/input/?A?/``.
+3. Unzip each compressed dataset (``.zip`` file) and drag folders/files into corresponding dir of this repo. For example, extract all files from the ``?A?.7z`` to the dir ``./data/input/?A?/``.
 4. Run (all the codes that need to be run is stored in the dir ``./codes/``)
    1. **01FreightTripODGeneration.py**: run the script and some intermediate data will be produced (can be found in the dir ``./data/interim/...``) then
    2. **02DetailedFreightTripsGeneration.py**: run the script and some intermediate data will be produced (can be found in the dir ``./data/interim/...``) then
