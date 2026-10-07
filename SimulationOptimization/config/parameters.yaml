@@ -1,0 +1,113 @@
+path_config:
+  trajectory_path: D:/ChinaTrip/Output/Trajectory
+  road_network_path: D:/Road/OSMOutput/ChinaHighway.gpkg
+  traffic_volume_path: D:/Road/RoadProcess/Output/002VolumeDayUpdate
+  station_data_path: D:/ChinaStation/Output/ChinaStationHighway.shp
+  temperature_data_path: D:/ChinaTem/NOAA_NCEI/Output/ChinaTemperature4Season.txt
+  vehicle_data_path: D:/ChinaEFVSimulation/ChinaEFVParameter/TypicalVehicleBEVHFCV.txt
+  cs_data_path: D:/ChinaEFVSimulation/ChinaEFVParameter/ChargingStation.txt
+  bss_data_path: D:/ChinaEFVSimulation/ChinaEFVParameter/BatterySwapStation.txt
+  hrs_data_path: D:/ChinaEFVSimulation/ChinaEFVParameter/HydrogenRefuelingStation.txt
+  charging_post_data_path: D:/ChinaEFVSimulation/ChinaEFVParameter/ChargingPost.txt
+  electricity_price_summer_path: D:/ChinaEFVSimulation/ChinaEFVParameter/ElectricityPriceSummer.txt
+  electricity_price_unsummer_path: D:/ChinaEFVSimulation/ChinaEFVParameter/ElectricityPriceUnsummer.txt
+  hydrogen_price_path: D:/ChinaEFVSimulation/ChinaEFVParameter/HydrogenPriceCG.txt
+  parameters_path: D:/ChinaEFVSimulation/ChinaEFVParameter/Parameters.txt
+  free_speed_path: D:/ChinaEFVSimulation/ChinaEFVParameter/FreeSpeedByCategory.txt
+  vehicle_ghg_path: D:/ChinaEFVSimulation/ChinaEFVParameter/BEVHFCVGHG.txt
+  battery_ghg_path: D:/ChinaEFVSimulation/ChinaEFVParameter/BatteryGHG.txt
+  province_city_code_path: D:/ChinaEFVSimulation/ChinaEFVParameter/ProvinceCityCode.txt
+  distance_correction_file: D:/ChinaEFVSimulation/ChinaEFVParameter/CityDistanceCorrection.pkl
+  output_directory: D:/ChinaEFVSimulation/Output
+data_processing:
+  chunk_size: 5000
+  memory_limit: 40
+  clean_nan_records: true
+  cache_processed_data: true
+  ultra_low_memory_mode: false
+  sample_ratio: 1.0
+simulation:
+  seasons:
+    Winter:
+      start_date: '20190114'
+      end_date: '20190120'
+    Spring:
+      start_date: '20190418'
+      end_date: '20190424'
+    Summer:
+      start_date: '20190716'
+      end_date: '20190722'
+    Autumn:
+      start_date: '20191106'
+      end_date: '20191112'
+  bev:
+    min_soc: 0.2
+    max_charging_time: 999999999999
+  hfcv:
+    min_soc: 0.2
+    max_refueling_time: 999999999999
+  rest:
+    max_driving_hours: 4.0
+    min_rest_time: 20
+  queue:
+    max_queue_length: 999999999999
+  early_stop_infeasible: true
+  temperature_effect:
+    bev:
+      threshold_1: -10.0
+      factor_1: 1.066
+      threshold_2: 0.0
+      factor_2: 1.034
+      threshold_3: 10.0
+      factor_3: 1.017
+      threshold_4: 35.0
+      factor_4: 1.0
+      factor_5: 1.003
+    hfcv:
+      threshold_1: -10.0
+      factor_1: 1.042
+      threshold_2: 0.0
+      factor_2: 1.024
+      threshold_3: 10.0
+      factor_3: 1.012
+      threshold_4: 35.0
+      factor_4: 1.0
+      factor_5: 1.002
+optimization:
+  simulated_annealing:
+    algorithm: parallel_aesa
+    initial_temperature: 500.0
+    cooling_rate: 0.98
+    iterations_per_temp: 150
+    min_temperature: 0.5
+    max_iterations: 10000
+    parallel: true
+    random_seed: 42
+    archive_size: 200
+    max_parallel_chains: 4
+    max_initial_attempts: 20
+    target_acceptance_low: 0.2
+    target_acceptance_high: 0.55
+    adaptation_strength: 0.2
+    rapid_improvement_threshold: 0.15
+    rapid_improvement_cooling_multiplier: 0.98
+    diversity_acceptance_bonus: 0.15
+    reheat_after_stagnation: 5
+    reheat_factor: 1.2
+    restart_after_stagnation: 10
+  constraints:
+    min_stations: 1
+    max_stations: 999999999999
+  compromise_weights:
+    cost: 0.333
+    travel_time: 0.333
+    ghg: 0.334
+  assignment_limit: null
+  initial_station_fraction: 0.2
+  vehicle_mutation_fraction: 0.1
+  vehicle_category_switch_probability: 0.2
+logging:
+  level: INFO
+  console_output: true
+  file_output: true
+  log_format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
