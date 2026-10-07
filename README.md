@@ -64,31 +64,176 @@ It is highly recommended to download AnaConda to create/manage Python environmen
      ```
 
 # Usage
-1. Git clone/download the repository to your local disk.
-2. Unzip the full datasets (which can be provided upon request, see [Overview](https://github.com/wanganya/china-freight-AFV/blob/main/README.md).
-   
-   > The structure of the provided full datasets should look like as below:
-   >
-   > ```
-   > data/
-   > ├── raw/
-   > │   ├── freight_trip/
-   > │   ├── vehicle/
-   > │   ├── road_network/
-   > │   ├── energy/
-   > │   └── infrastructure/
-   > │
-   > ├── interim/
-   > │
-   > └── output/
-   > ```
-3. Unzip each compressed dataset (``.zip`` file) and drag folders/files into corresponding dir of this repo. For example, extract all files from the ``?A?.7z`` to the dir ``./data/input/?A?/``.
-4. Run (all the codes that need to be run is stored in the dir ``./codes/``)
-   1. **01FreightTripODGeneration.py**: run the script and some intermediate data will be produced (can be found in the dir ``./data/interim/...``) then
-   2. **02DetailedFreightTripsGeneration.py**: run the script and some intermediate data will be produced (can be found in the dir ``./data/interim/...``) then
-   3. **PreDistenceCorrection.py** in the dir ``./codes/SimulationOptimization/0preprocess``: run the script and some intermediate data will be produced (can be found in the dir ``./data/interim/...``) then
-   4. **main.py** in the dir ``./codes/SimulationOptimization``: run the script
-5. Outputs will be stored in the dir ``./data/output``, respectively.
+
+## 1. Download the repository
+Clone or download this repository to your local disk.
+## 2. Prepare datasets
+The complete datasets required for running the framework are available upon request, see [Overview](https://github.com/wanganya/china-freight-AFV/blob/main/README.md).
+
+After downloading the datasets, organize the folders according to the paths defined in the scripts and configuration file.
+The required dataset structure is:
+``` text
+Dataset/
+│
+├── ChinaTrip/
+│   └── Output/
+│       ├── EFVTrip2019CoorReviseCityDiffODCargo.txt
+│       ├── 2019CityFreVoluaddCodeRevisedDiffODFinalFinal.txt
+│       └── Trajectory/
+│           ├── Trajectory_Winter_20190114_20190120_sort.txt
+│           ├── Trajectory_Spring_20190418_20190424_sort.txt
+│           ├── Trajectory_Summer_20190716_20190722_sort.txt
+│           └── Trajectory_Autumn_20191106_20191112_sort.txt
+│
+├── Road/
+│   └── OSMOutput/
+│       ├── OSM_Highway_no2nd_Code.gpkg
+│       ├── 001VolumeMonUpdate/
+│       │   └── MonthDistribution.txt
+│       └── 002VolumeDayUpdate/
+│
+├── ChinaStation/
+│   └── Output/
+│       └── ChinaStationHighway.shp
+│
+├── ChinaTem/
+│   └── NOAA_NCEI/
+│       └── Output/
+│           └── ChinaTemperature4Season.txt
+│
+└── ChinaEFVSimulation/
+    ├── ChinaEFVParameter/
+    │   ├── TypicalVehicleBEVHFCV.txt
+    │   ├── ChargingStation.txt
+    │   ├── BatterySwapStation.txt
+    │   ├── HydrogenRefuelingStation.txt
+    │   ├── ChargingPost.txt
+    │   ├── ElectricityPriceSummer.txt
+    │   ├── ElectricityPriceUnsummer.txt
+    │   ├── HydrogenPriceCG.txt
+    │   ├── Parameters.txt
+    │   ├── FreeSpeedByCategory.txt
+    │   ├── BEVHFCVGHG.txt
+    │   ├── BatteryGHG.txt
+    │   └── ProvinceCityCode.txt
+    │
+    └── Output/
+```
+Before running the simulation framework, modify the corresponding paths
+in:
+``` text
+./codes/SimulationOptimization/config/parameters.yaml
+```
+to match your local dataset locations.
+## 3. Run the workflow sequentially
+
+The framework consists of four sequential stages. Intermediate files
+generated in each stage are used as inputs for the following stage.
+
+All executable scripts are located in:
+
+``` text
+./codes/
+```
+
+### Step 1. Generate freight trip OD demand
+
+Run:
+
+``` bash
+python ./codes/01FreightTripODGeneration.py
+```
+
+This script generates freight origin-destination (OD) demand by
+processing truck OD records and city freight volume data.
+
+The generated OD expansion file is used as input for the next stage.
+
+### Step 2. Generate detailed freight trajectories
+
+Run:
+
+``` bash
+python ./codes/02DetailedFreightTripsGeneration.py
+```
+
+This script converts OD demand into detailed freight trajectories by
+considering road networks, traffic volume, and seasonal variations.
+
+The generated trajectory files are stored in:
+
+``` text
+ChinaTrip/Output/Trajectory/
+```
+
+### Step 3. Distance correction preprocessing
+
+Run:
+
+``` bash
+python ./codes/SimulationOptimization/0preprocess/PreDistanceCorrection.py
+```
+
+This script calculates distance correction coefficients required by the
+simulation framework.
+
+The generated correction file is used in the simulation optimization
+stage.
+
+### Step 4. Run simulation-based optimization framework
+
+Run:
+
+``` bash
+python ./codes/SimulationOptimization/main.py
+```
+
+This stage performs:
+
+-   freight vehicle operation simulation;
+-   BEV and HFCV energy consumption simulation;
+-   charging, battery swapping, and hydrogen refueling service
+    simulation;
+-   multi-objective optimization of vehicle fleet composition and
+    infrastructure configuration.
+
+The required input datasets are loaded according to:
+
+``` text
+./codes/SimulationOptimization/config/parameters.yaml
+```
+
+
+## 4. Outputs
+
+The simulation and optimization results are saved in:
+
+``` text
+ChinaEFVSimulation/Output/
+```
+
+The output files include:
+
+``` text
+Output/
+│
+├── optimization_history.csv
+├── 01ElectrifiedVehicle.txt
+├── 02Station.txt
+├── 04Objective.txt
+├── 07DrivingTimeStatistics.txt
+│
+├── figures/
+│
+├── cache/
+│
+└── intermediate/
+    └── summary_iter_*.json
+```
+
+The generated outputs can be used to reproduce the simulation results,
+optimization results, and figures presented in the manuscript.
+
 
 # Contact
 - Leave questions in [Issues on GitHub](https://github.com/wanganya/china-freight-AFV/issues)
