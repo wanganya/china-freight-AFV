@@ -1,6 +1,8 @@
 # china-freight-AFV
 # Overview
-This repository contains all codes of the paper - ??
+This repository contains all codes of the paper - **Spatially Differentiated Electrification Strategies for China’s Intercity Freight Transport: Multi-scale Actionable Insights from Nationwide Micro-simulations**
+
+Note that the full dataset can be requested through Email.
 
 # Requirements and Installation
 The whole analysis-related codes should run with a **Python** environment, regardless of operating systems theoretically. We successfully execute all the codes in both Windows (Win10, Win11) machines and a macOS (Sequoia 15.2) machine. More detailed info is as below:
@@ -63,7 +65,7 @@ It is highly recommended to download AnaConda to create/manage Python environmen
 
 # Usage
 1. Git clone/download the repository to your local disk.
-2. Unzip the full datasets (which can be provided upon request, see ???)
+2. Unzip the full datasets (which can be provided upon request, see Overview[])
    > The structure of the provided full datasets should look like as below:
    > 
    > ```
