@@ -1,8 +1,8 @@
 # china-freight-AFV
 # Overview
-This repository contains all codes of the paper - **Spatially Differentiated Electrification Strategies for China’s Intercity Freight Transport: Multi-scale Actionable Insights from Nationwide Micro-simulations**
+This repository contains all codes of the paper - **Multiscale Spatially Actionable Strategies for Electrifying China's Intercity Freight**
 
-Note that the full dataset can be requested through Email.
+Note that the full dataset can be requested through Global EV Data Initiative at https://globalevdata.github.io/.
 
 # Requirements and Installation
 The whole analysis-related codes should run with a **Python** environment, regardless of operating systems theoretically. We successfully execute all the codes in both Windows (Win10, Win11) machines and a macOS (Sequoia 15.2) machine. More detailed info is as below:
