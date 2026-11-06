@@ -2,7 +2,7 @@
 # Overview
 This repository contains all codes of the paper - **Multiscale Spatially Actionable Strategies for Electrifying China's Intercity Freight**
 
-Note that the full dataset can be requested through Global EV Data Initiative at https://globalevdata.github.io/.
+The OD-based freight vehicle survey data and highway traffic flow observation data used in this study are subject to data-sharing restrictions and are therefore not publicly available. These datasets may, however, be obtained from the corresponding author upon reasonable request and with permission from the data provider. The remaining datasets were obtained from publicly available sources. Detailed descriptions of these datasets, including their sources, are provided in the Methods and Supplementary Methods, with additional documentation available at https://github.com/wanganya/china-freight-AFV.
 
 # Requirements and Installation
 The whole analysis-related codes should run with a **Python** environment, regardless of operating systems theoretically. We successfully execute all the codes in both Windows (Win10, Win11) machines and a macOS (Sequoia 15.2) machine. More detailed info is as below:
